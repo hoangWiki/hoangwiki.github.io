@@ -6,11 +6,13 @@
 
     <script>
         async function loadFiles() {
+			const username = "hoangwiki"
+			const repository = "hoangpd"
             const repo = "hoangwiki/hoangpd";  // Your GitHub repo (username/repository)
             const branch = "main";  // Change if using another branch
             
             // Get the folder path dynamically from the URL
-            let path = window.location.pathname.replace(/^\//, '').replace(/\/$/, ''); // Trim leading/trailing slashes
+            let path = window.location.pathname.split('/').slice(-2, -1)[0]; // Trim leading/trailing slashes
             if (!path) path = "";  // Root folder case
 
             const apiUrl = `https://api.github.com/repos/${repo}/contents/${path}?ref=${branch}`;
@@ -28,9 +30,9 @@
                 files.forEach(file => {
                     let li = document.createElement("li");
                     let a = document.createElement("a");
-                    a.href = `/${repo}/${path}/${file.name}`;
+                    a.href = `/${repository}/${path}/${file.name}`;
                     a.textContent = file.name;
-                    a.target = "_blank";
+                    //a.target = "_blank";
                     li.appendChild(a);
                     fileList.appendChild(li);
                 });
