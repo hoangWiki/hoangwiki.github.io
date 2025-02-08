@@ -30,7 +30,7 @@
                 files.forEach(file => {
                     let li = document.createElement("li");
                     let a = document.createElement("a");
-                    a.href = `/${repository}/${path}/${file.name}`;
+                    a.href = `/${path}/${file.name}`;
                     a.textContent = file.name;
                     //a.target = "_blank";
                     li.appendChild(a);
