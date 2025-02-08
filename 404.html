@@ -2,6 +2,8 @@
 <html>
 <body>
     <h1>Thông tin đấu giá</h1>
+	<div id="image-container"></div>
+	<h2>Tài liệu đấu giá:</h2>
     <ul id="file-list"></ul>
 
     <script>
@@ -25,6 +27,15 @@
                     document.body.innerHTML = "<h2>Error: Folder not found.</h2>";
                     return;
                 }
+				// Find and display the JPEG file
+				const imageContainer = document.getElementById("image-container");
+				const jpegFile = files.find(f => f.toLowerCase().endsWith(".jpg") || f.toLowerCase().endsWith(".jpeg"));
+				if (jpegFile) {
+					const img = document.createElement("img");
+					img.src = jpegFile;
+					imageContainer.appendChild(img);
+					files = files.filter(f => f !== jpegFile); // Remove from list
+				}
 
                 const fileList = document.getElementById("file-list");
                 files.forEach(file => {
