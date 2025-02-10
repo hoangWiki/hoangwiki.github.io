@@ -4,17 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test Site</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        label {
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+            font-size: 1em;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <div>
-        <input type="text" id="inputNumber" placeholder="Enter number">
-        <button onclick="redirectToPage()">Go</button>
+    <div class="container">
+        <label for="inputNumber">Mã tài sản: </label>
+        <input type="text" id="inputNumber" placeholder="414890" onkeypress="handleKeyPress(event)">
+        <button onclick="redirectToPage()">Xem chi tiết</button>
     </div>
     <script>
         function redirectToPage() {
             const number = document.getElementById('inputNumber').value;
             if (number) {
                 window.location.href = `/${number}`;
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                redirectToPage();
             }
         }
     </script>
