@@ -5,19 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thông tin đấu giá</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
-        img { max-width: 100%; height: auto; display: block; margin: 10px auto; }
-        ul { list-style: none; padding: 0; }
-        li { margin: 10px 0; }
-        a { text-decoration: none; color: #007bff; font-size: 18px; }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 800px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 10px auto;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+        a:hover {
+            color: #0056b3;
+        }
     </style>
 </head>
 <body>
-    <h1>Thông tin đấu giá</h1>
-    <div id="image-container"></div>
-    <h2>Tài liệu đấu giá:</h2>
-    <ul id="file-list"></ul>
-
+    <div class="container">
+        <h1>Thông tin đấu giá</h1>
+        <div id="image-container"></div>
+        <h2>Tài liệu đấu giá:</h2>
+        <ul id="file-list"></ul>
+    </div>
     <script>
         async function loadFiles() {
             const username = "hoangwiki";
