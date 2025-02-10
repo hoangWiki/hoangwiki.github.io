@@ -1,1 +1,22 @@
-this my test site
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Site</title>
+</head>
+<body>
+    <div>
+        <input type="text" id="inputNumber" placeholder="Enter number">
+        <button onclick="redirectToPage()">Go</button>
+    </div>
+    <script>
+        function redirectToPage() {
+            const number = document.getElementById('inputNumber').value;
+            if (number) {
+                window.location.href = `/${number}`;
+            }
+        }
+    </script>
+</body>
+</html>
