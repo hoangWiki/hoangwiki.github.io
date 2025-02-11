@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thông tin đấu giá</title>
+    <title>Test Site</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,12 +13,19 @@
             justify-content: center;
             align-items: flex-start;
             height: 100vh;
+            padding: 20px;
+        }
+        .justify-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
         }
         .container {
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: row;
+            flex-direction: column;
             background: white;
             padding: 20px;
             border-radius: 10px;
@@ -26,15 +33,17 @@
             margin-top: 20px;
         }
         label {
-            margin-right: 10px;
+            margin-bottom: 10px;
             font-size: 1.2em;
         }
         input {
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            margin-right: 10px;
+            margin-bottom: 10px;
             font-size: 1em;
+            width: 100%;
+            max-width: 300px;
         }
         button {
             padding: 10px 20px;
@@ -49,13 +58,37 @@
         button:hover {
             background-color: #0056b3;
         }
+        .tiktok-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .tiktok-container a {
+            color: #007bff;
+            font-size: 1.2em;
+            text-decoration: none;
+            display: block;
+        }
+        .tiktok-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body>
+    <div class="justify-content">
     <div class="container">
-        <label for="inputNumber">Mã tài sản: </label>
+        <label for="inputNumber">Mã tài sản:</label>
         <input type="text" id="inputNumber" placeholder="414890" onkeypress="handleKeyPress(event)">
         <button onclick="redirectToPage()">Xem chi tiết</button>
+    </div>
+    <div class="tiktok-container">
+        <h2>Check out this product on TikTok!</h2>
+        <a id="tiktok-link" href="https://vt.tiktok.com/ZSMdGpPeU/" target="_blank">
+            <img id="tiktok-thumbnail" src="https://via.placeholder.com/300" alt="TikTok Product" width="300">
+        </a>
+    </div>
     </div>
     <script>
         function redirectToPage() {
@@ -70,6 +103,30 @@
                 redirectToPage();
             }
         }
+        async function fetchTikTokShopThumbnail() {
+            const shortUrl = "https://vt.tiktok.com/ZSMdGpPeU/";
+            const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(shortUrl)}`;
+
+            try {
+                const response = await fetch(proxyUrl);
+                const data = await response.json();
+                const pageHtml = data.contents;
+
+                // Extract the first image URL from TikTok Shop page
+                const match = pageHtml.match(/"cover":\s*"([^"]+)"/);
+                if (match) {
+                    const imageUrl = match[1].replace(/\\u002F/g, "/"); // Fix JSON encoding
+
+                    document.getElementById("tiktok-thumbnail").src = imageUrl;
+                    document.getElementById("tiktok-link").href = response.url; // Update link
+                }
+            } catch (error) {
+                console.error("Failed to fetch TikTok Shop thumbnail:", error);
+            }
+        }
+        
+
+        fetchTikTokThumbnail();
     </script>
 </body>
 </html>
