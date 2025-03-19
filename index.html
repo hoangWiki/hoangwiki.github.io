@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Site</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            padding: 20px;
+        }
+        .justify-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        label {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-size: 1em;
+            width: 100%;
+            max-width: 300px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .tiktok-container {
+            margin-top: 20px;
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .tiktok-container a {
+            color: #007bff;
+            font-size: 1.2em;
+            text-decoration: none;
+            display: block;
+            margin-top: 10px;
+        }
+        .tiktok-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="justify-content">
+        <div class="container">
+            <label for="inputNumber">Mã tài sản:</label>
+            <input type="text" id="inputNumber" placeholder="414890" onkeypress="handleKeyPress(event)">
+            <button onclick="redirectToPage()">Xem chi tiết</button>
+        </div>
+        <div class="tiktok-container">
+            <h2>Check out this product on TikTok!</h2>
+            <a id="tiktok-link" href="https://vt.tiktok.com/ZSMdGpPeU/" target="_blank">
+                <img id="tiktok-thumbnail" src="https://via.placeholder.com/300" alt="TikTok Product" width="300">
+                <button style="margin-top: 10px; background-color: #ff0050; color: white;">Watch on TikTok</button>
+            </a>
+        </div>
+    </div>
+    <script>
+        function redirectToPage() {
+            const number = document.getElementById('inputNumber').value;
+            if (number) {
+                window.location.href = `/${number}`;
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                redirectToPage();
+            }
+        }
+
+        async function fetchTikTokThumbnail() {
+            const shortUrl = "https://vt.tiktok.com/ZSMdGpPeU/";
+            const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(shortUrl)}`;
+
+            try {
+                const response = await fetch(proxyUrl);
+                const finalUrl = response.url; // Get the real TikTok URL
+                
+                // Extract video ID from the final TikTok URL
+                const match = finalUrl.match(/\/video\/(\d+)/);
+                if (match) {
+                    const videoId = match[1];
+                    const thumbnailUrl = `https://p16-sign-va.tiktokcdn.com/obj/tos-maliva-p-0068/${videoId}.jpeg`;
+
+                    document.getElementById("tiktok-thumbnail").src = thumbnailUrl;
+                    document.getElementById("tiktok-link").href = finalUrl;
+                }
+            } catch (error) {
+                console.error("Failed to fetch TikTok thumbnail:", error);
+            }
+        }
+
+        fetchTikTokThumbnail();
+    </script>
+</body>
+</html>
