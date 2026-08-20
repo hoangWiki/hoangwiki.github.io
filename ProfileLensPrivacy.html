@@ -1,0 +1,36 @@
+<h2>1. Overview</h2>
+<p>This Privacy Policy explains what data the <strong>ProfileLens - LinkedIn AI Companion</strong> Chrome extension reads, how it is used, and who it is shared with. ProfileLens has no backend server operated by us — all data flows directly from your browser to the third-party APIs described below.</p>
+
+<h2>2. What data ProfileLens reads</h2>
+<p>When you click <strong>"Analyze Profile"</strong> on a LinkedIn profile page (linkedin.com/in/*), the extension reads the following from that page's visible content:</p>
+<ul>
+  <li>Name and headline</li>
+  <li>"About" section text</li>
+  <li>Up to 3 recent work experience entries</li>
+  <li>Up to 2 recent activity posts shown on the profile</li>
+</ul>
+<p>This happens only on user action (clicking Analyze) — ProfileLens does not scrape or read profile data automatically or in the background.</p>
+
+<h2>3. How this data is used and who it is shared with</h2>
+<ul>
+  <li><strong>Anthropic (api.anthropic.com):</strong> The profile text extracted in step 2 is sent directly from your browser to Anthropic's Claude API, using <em>your own</em> Anthropic API key that you provide in the extension popup, to generate conversation starters, highlights, and outreach suggestions. We do not operate this API and never receive or store a copy of this data ourselves.</li>
+  <li><strong>Polar.sh (api.polar.sh):</strong> If you activate a Pro license key, that key is sent to Polar.sh's API to verify it is valid and active. No profile or personal data is included in this request — only the license key string.</li>
+</ul>
+<p>We do not sell, rent, or use this data for advertising. We do not operate any analytics or tracking service inside the extension.</p>
+
+<h2>4. What is stored, and where</h2>
+<ul>
+  <li><strong>Your Anthropic API key</strong> — stored in <code>chrome.storage.local</code> on your device only. Never transmitted to us.</li>
+  <li><strong>Your Polar.sh license key</strong> (Pro users only) — stored in <code>chrome.storage.local</code> on your device only.</li>
+  <li><strong>Monthly usage count</strong> (a number, e.g. "3 of 10 free analyses used") — stored in <code>chrome.storage.sync</code> so it follows your Chrome profile across devices. Contains no profile content.</li>
+</ul>
+<p>Analyzed profile content itself (name, headline, about, experience, activity) is never stored by the extension — it is read, sent to Anthropic for that single request, and discarded from memory once the response is shown.</p>
+
+<h2>5. Data retention and deletion</h2>
+<p>Uninstalling ProfileLens, or clearing its storage from <code>chrome://extensions</code>, permanently deletes the API key, license key, and usage count from your device. Because we never receive or store this data on a server, there is nothing further for us to delete on our end.</p>
+
+<h2>6. Changes to this policy</h2>
+<p>If this policy changes, the updated version will be published at this same URL and reflected in the extension's Chrome Web Store listing.</p>
+
+<h2>7. Contact</h2>
+<p>Questions about privacy: <a href="mailto:phamdinhhoang.fetk54@gmail.com">phamdinhhoang.fetk54@gmail.com</a>.</p>
